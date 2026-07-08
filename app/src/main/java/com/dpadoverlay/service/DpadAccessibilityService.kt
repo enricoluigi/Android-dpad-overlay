@@ -3,6 +3,7 @@ package com.dpadoverlay.service
 import android.accessibilityservice.AccessibilityService
 import android.content.ComponentName
 import android.content.Context
+import android.os.Build
 import android.provider.Settings
 import android.view.KeyEvent
 import android.view.accessibility.AccessibilityEvent
@@ -26,13 +27,29 @@ class DpadAccessibilityService : AccessibilityService() {
     }
 
     fun sendKey(keyCode: Int): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            return performGlobalAction(GLOBAL_ACTION_BACK)
+        return performGlobalAction(keyCodeToGlobalAction(keyCode))
+    }
+
+    private fun keyCodeToGlobalAction(keyCode: Int): Int {
+        return when (keyCode) {
+            KeyEvent.KEYCODE_BACK -> GLOBAL_ACTION_BACK
+            KeyEvent.KEYCODE_HOME -> GLOBAL_ACTION_HOME
+            KeyEvent.KEYCODE_DPAD_UP -> globalDpadAction(GLOBAL_ACTION_DPAD_UP, 16)
+            KeyEvent.KEYCODE_DPAD_DOWN -> globalDpadAction(GLOBAL_ACTION_DPAD_DOWN, 17)
+            KeyEvent.KEYCODE_DPAD_LEFT -> globalDpadAction(GLOBAL_ACTION_DPAD_LEFT, 18)
+            KeyEvent.KEYCODE_DPAD_RIGHT -> globalDpadAction(GLOBAL_ACTION_DPAD_RIGHT, 19)
+            KeyEvent.KEYCODE_DPAD_CENTER,
+            KeyEvent.KEYCODE_ENTER -> globalDpadAction(GLOBAL_ACTION_DPAD_CENTER, 20)
+            else -> GLOBAL_ACTION_BACK
         }
-        if (keyCode == KeyEvent.KEYCODE_HOME) {
-            return performGlobalAction(GLOBAL_ACTION_HOME)
+    }
+
+    private fun globalDpadAction(api33Constant: Int, fallbackConstant: Int): Int {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            api33Constant
+        } else {
+            fallbackConstant
         }
-        return false
     }
 
     companion object {
@@ -55,15 +72,17 @@ class DpadAccessibilityService : AccessibilityService() {
             ) ?: return false
 
             val component = ComponentName(context, DpadAccessibilityService::class.java)
-            val flattened = component.flattenToString()
-            val shortFlattened = component.flattenToShortString()
             return enabled.split(':').any { entry ->
-                entry.equals(flattened, ignoreCase = true) ||
-                    entry.equals(shortFlattened, ignoreCase = true)
+                entry.equals(component.flattenToString(), ignoreCase = true) ||
+                    entry.equals(component.flattenToShortString(), ignoreCase = true)
             }
         }
 
         fun isConnected(): Boolean = instance != null
+
+        fun supportsDpadKeys(): Boolean {
+            return Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+        }
 
         fun sendKey(keyCode: Int): Boolean {
             return instance?.sendKey(keyCode) ?: false

@@ -2,19 +2,13 @@
 <resources>
     <string name="app_name">D-pad Overlay</string>
     <string name="main_title">Teclado direcional flutuante</string>
-    <string name="main_subtitle">Envia teclas reais de controle remoto (DPAD) para qualquer app via Shizuku.</string>
-    <string name="permissions_title">Configuração</string>
+    <string name="main_subtitle">Envia teclas de controle remoto via acessibilidade — igual apps como Key Mapper.</string>
+    <string name="permissions_title">Configuração rápida</string>
     <string name="overlay_permission_label">Exibir sobre outros apps</string>
-    <string name="shizuku_label">Shizuku (teclas reais)</string>
-    <string name="accessibility_label">Acessibilidade (opcional, só Voltar/Home)</string>
+    <string name="accessibility_label">Serviço de acessibilidade</string>
     <string name="overlay_running_label">Overlay ativo</string>
     <string name="grant_overlay_permission">Conceder permissão de overlay</string>
-    <string name="install_shizuku">Instalar Shizuku</string>
-    <string name="open_shizuku">Abrir Shizuku e iniciar</string>
-    <string name="grant_shizuku_permission">Conceder permissão ao D-pad Overlay</string>
-    <string name="shizuku_ready_action">Shizuku pronto</string>
-    <string name="shizuku_hint">O Shizuku permite enviar key_up, key_down etc. como um controle remoto real. Ative via Depuração sem fio no app Shizuku.</string>
-    <string name="open_accessibility_settings">Abrir acessibilidade (opcional)</string>
+    <string name="open_accessibility_settings">Ativar acessibilidade</string>
     <string name="start_overlay">Iniciar overlay</string>
     <string name="stop_overlay">Parar overlay</string>
     <string name="status_granted">Concedida</string>
@@ -23,22 +17,16 @@
     <string name="status_disabled">Inativo</string>
     <string name="status_running">Sim</string>
     <string name="status_stopped">Não</string>
-    <string name="status_ready">Pronto</string>
-    <string name="status_waiting_permission">Aguardando permissão</string>
-    <string name="status_not_running">Não iniciado</string>
-    <string name="status_not_installed">Não instalado</string>
     <string name="overlay_already_granted">Permissão de overlay já concedida.</string>
     <string name="overlay_permission_required">Conceda a permissão de overlay primeiro.</string>
-    <string name="shizuku_required_to_start">Configure o Shizuku antes de iniciar o overlay.</string>
-    <string name="shizuku_already_ready">Shizuku já está configurado.</string>
+    <string name="accessibility_required">Ative o serviço de acessibilidade do D-pad Overlay.</string>
+    <string name="accessibility_not_connected">Serviço de acessibilidade não conectado. Desative e ative de novo.</string>
     <string name="overlay_started">Overlay iniciado.</string>
     <string name="overlay_stopped">Overlay parado.</string>
     <string name="overlay_start_failed">Falha ao iniciar o overlay. Tente novamente.</string>
     <string name="key_send_failed">Não foi possível enviar a tecla.</string>
     <string name="dpad_send_failed">Não foi possível enviar a tecla direcional.</string>
-    <string name="shizuku_install_required">Instale o Shizuku para enviar teclas direcionais reais.</string>
-    <string name="shizuku_start_required">Abra o Shizuku e inicie o serviço (Depuração sem fio).</string>
-    <string name="shizuku_permission_required">Conceda permissão do Shizuku ao D-pad Overlay.</string>
+    <string name="dpad_requires_android_13">Teclas direcionais requerem Android 13 ou superior.</string>
     <string name="accessibility_connected_label">Serviço conectado</string>
     <string name="key_up">▲</string>
     <string name="key_down">▼</string>
@@ -52,5 +40,5 @@
     <string name="notification_channel_description">Mantém o teclado direcional visível em segundo plano.</string>
     <string name="notification_title">D-pad Overlay ativo</string>
     <string name="notification_text">Toque para abrir as configurações.</string>
-    <string name="accessibility_service_description">Fallback opcional para teclas Voltar e Home quando o Shizuku não estiver disponível.</string>
+    <string name="accessibility_service_description">Permite enviar teclas direcionais, OK, voltar e home como um controle remoto.</string>
 </resources>
