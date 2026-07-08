@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">D-pad Overlay</string>
+    <string name="main_title">Teclado direcional flutuante</string>
+    <string name="main_subtitle">Simule as teclas direcionais, voltar e home sobre qualquer app.</string>
+    <string name="permissions_title">Permissões necessárias</string>
+    <string name="overlay_permission_label">Exibir sobre outros apps</string>
+    <string name="accessibility_label">Serviço de acessibilidade</string>
+    <string name="overlay_running_label">Overlay ativo</string>
+    <string name="grant_overlay_permission">Conceder permissão de overlay</string>
+    <string name="open_accessibility_settings">Abrir configurações de acessibilidade</string>
+    <string name="start_overlay">Iniciar overlay</string>
+    <string name="stop_overlay">Parar overlay</string>
+    <string name="status_granted">Concedida</string>
+    <string name="status_denied">Negada</string>
+    <string name="status_enabled">Ativo</string>
+    <string name="status_disabled">Inativo</string>
+    <string name="status_running">Sim</string>
+    <string name="status_stopped">Não</string>
+    <string name="overlay_already_granted">Permissão de overlay já concedida.</string>
+    <string name="overlay_permission_required">Conceda a permissão de overlay primeiro.</string>
+    <string name="accessibility_required">Ative o serviço de acessibilidade do D-pad Overlay.</string>
+    <string name="overlay_started">Overlay iniciado.</string>
+    <string name="overlay_stopped">Overlay parado.</string>
+    <string name="key_send_failed">Não foi possível enviar a tecla. Verifique o serviço de acessibilidade.</string>
+    <string name="key_up">▲</string>
+    <string name="key_down">▼</string>
+    <string name="key_left">◀</string>
+    <string name="key_right">▶</string>
+    <string name="key_back">Voltar</string>
+    <string name="key_home">Home</string>
+    <string name="close_overlay">Fechar</string>
+    <string name="notification_channel_name">Overlay D-pad</string>
+    <string name="notification_channel_description">Mantém o teclado direcional visível em segundo plano.</string>
+    <string name="notification_title">D-pad Overlay ativo</string>
+    <string name="notification_text">Toque para abrir as configurações.</string>
+    <string name="accessibility_service_description">Permite que o D-pad Overlay envie teclas direcionais, voltar e home para outros aplicativos.</string>
+</resources>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/overlay_background"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:id="@+id/drag_handle"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="36dp"
+            android:layout_height="4dp"
+            android:background="@drawable/drag_handle_bar" />
+    </LinearLayout>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alignmentMode="alignMargins"
+        android:columnCount="3"
+        android:rowCount="3"
+        android:useDefaultMargins="true">
+
+        <Space
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_column="0"
+            android:layout_row="0" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_up"
+            style="@style/OverlayKeyButton"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:contentDescription="@string/key_up"
+            android:text="@string/key_up" />
+
+        <Space
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_column="2"
+            android:layout_row="0" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_left"
+            style="@style/OverlayKeyButton"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:contentDescription="@string/key_left"
+            android:text="@string/key_left" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_down"
+            style="@style/OverlayKeyButton"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:contentDescription="@string/key_down"
+            android:text="@string/key_down" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_right"
+            style="@style/OverlayKeyButton"
+            android:layout_column="2"
+            android:layout_row="1"
+            android:contentDescription="@string/key_right"
+            android:text="@string/key_right" />
+    </GridLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_back"
+            style="@style/OverlayNavButton"
+            android:layout_marginEnd="6dp"
+            android:contentDescription="@string/key_back"
+            android:text="@string/key_back" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_home"
+            style="@style/OverlayNavButton"
+            android:contentDescription="@string/key_home"
+            android:text="@string/key_home" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_close"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:minHeight="32dp"
+        android:text="@string/close_overlay"
+        android:textSize="12sp" />
+
+</LinearLayout>
