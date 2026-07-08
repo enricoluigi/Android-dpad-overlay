@@ -31,7 +31,7 @@
             android:foregroundServiceType="specialUse">
             <property
                 android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
-                android:value="dpad_overlay" />
+                android:value="Mantém o teclado direcional flutuante visível sobre outros apps." />
         </service>
 
         <service

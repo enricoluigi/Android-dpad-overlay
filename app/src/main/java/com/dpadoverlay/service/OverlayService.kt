@@ -4,9 +4,12 @@ import android.app.Notification
 import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
+import android.content.pm.ServiceInfo
 import android.graphics.PixelFormat
 import android.os.Build
 import android.os.IBinder
+import android.util.Log
+import android.view.ContextThemeWrapper
 import android.view.Gravity
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -36,15 +39,39 @@ class OverlayService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        isRunning = true
-        startForeground(NOTIFICATION_ID, createNotification())
-        showOverlay()
+        try {
+            startForegroundService()
+            showOverlay()
+            isRunning = true
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to start overlay", e)
+            Toast.makeText(this, R.string.overlay_start_failed, Toast.LENGTH_LONG).show()
+            isRunning = false
+            stopSelf()
+        }
+    }
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        return START_STICKY
     }
 
     override fun onDestroy() {
         removeOverlay()
         isRunning = false
         super.onDestroy()
+    }
+
+    private fun startForegroundService() {
+        val notification = createNotification()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            startForeground(
+                NOTIFICATION_ID,
+                notification,
+                ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE
+            )
+        } else {
+            startForeground(NOTIFICATION_ID, notification)
+        }
     }
 
     private fun createNotification(): Notification {
@@ -61,12 +88,15 @@ class OverlayService : Service() {
             .setSmallIcon(R.drawable.ic_overlay)
             .setContentIntent(pendingIntent)
             .setOngoing(true)
+            .setPriority(NotificationCompat.PRIORITY_LOW)
             .build()
     }
 
     private fun showOverlay() {
         windowManager = getSystemService(WINDOW_SERVICE) as WindowManager
-        val binding = OverlayDpadBinding.inflate(LayoutInflater.from(this))
+
+        val themedContext = ContextThemeWrapper(this, R.style.Theme_DpadOverlay)
+        val binding = OverlayDpadBinding.inflate(LayoutInflater.from(themedContext))
         overlayBinding = binding
         overlayView = binding.root
 
@@ -119,9 +149,7 @@ class OverlayService : Service() {
                     overlayView?.let { windowManager?.updateViewLayout(it, params) }
                     true
                 }
-                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                    isDragging
-                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> isDragging
                 else -> false
             }
         }
@@ -139,13 +167,17 @@ class OverlayService : Service() {
 
     private fun sendKey(keyCode: Int) {
         if (!DpadAccessibilityService.sendKey(keyCode)) {
-            Toast.makeText(this, R.string.key_send_failed, Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, R.string.key_send_failed, Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun removeOverlay() {
         overlayView?.let { view ->
-            windowManager?.removeView(view)
+            try {
+                windowManager?.removeView(view)
+            } catch (e: Exception) {
+                Log.w(TAG, "Overlay view already removed", e)
+            }
         }
         overlayView = null
         overlayBinding = null
@@ -153,6 +185,7 @@ class OverlayService : Service() {
     }
 
     companion object {
+        private const val TAG = "OverlayService"
         private const val CHANNEL_ID = "dpad_overlay"
         private const val NOTIFICATION_ID = 1
         private const val DRAG_THRESHOLD = 8

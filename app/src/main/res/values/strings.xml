@@ -22,6 +22,7 @@
     <string name="accessibility_required">Ative o serviço de acessibilidade do D-pad Overlay.</string>
     <string name="overlay_started">Overlay iniciado.</string>
     <string name="overlay_stopped">Overlay parado.</string>
+    <string name="overlay_start_failed">Falha ao iniciar o overlay. Tente novamente.</string>
     <string name="key_send_failed">Não foi possível enviar a tecla. Verifique o serviço de acessibilidade.</string>
     <string name="key_up">▲</string>
     <string name="key_down">▼</string>

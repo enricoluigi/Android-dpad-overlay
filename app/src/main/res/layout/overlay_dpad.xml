@@ -33,7 +33,7 @@
             android:layout_column="0"
             android:layout_row="0" />
 
-        <com.google.android.material.button.MaterialButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_up"
             style="@style/OverlayKeyButton"
             android:layout_column="1"
@@ -47,7 +47,7 @@
             android:layout_column="2"
             android:layout_row="0" />
 
-        <com.google.android.material.button.MaterialButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_left"
             style="@style/OverlayKeyButton"
             android:layout_column="0"
@@ -55,7 +55,7 @@
             android:contentDescription="@string/key_left"
             android:text="@string/key_left" />
 
-        <com.google.android.material.button.MaterialButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_down"
             style="@style/OverlayKeyButton"
             android:layout_column="1"
@@ -63,7 +63,7 @@
             android:contentDescription="@string/key_down"
             android:text="@string/key_down" />
 
-        <com.google.android.material.button.MaterialButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_right"
             style="@style/OverlayKeyButton"
             android:layout_column="2"
@@ -79,28 +79,26 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <com.google.android.material.button.MaterialButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_back"
             style="@style/OverlayNavButton"
             android:layout_marginEnd="6dp"
             android:contentDescription="@string/key_back"
             android:text="@string/key_back" />
 
-        <com.google.android.material.button.MaterialButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_home"
             style="@style/OverlayNavButton"
             android:contentDescription="@string/key_home"
             android:text="@string/key_home" />
     </LinearLayout>
 
-    <com.google.android.material.button.MaterialButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_close"
-        style="@style/Widget.Material3.Button.TextButton"
+        style="@style/OverlayCloseButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:minHeight="32dp"
-        android:text="@string/close_overlay"
-        android:textSize="12sp" />
+        android:text="@string/close_overlay" />
 
 </LinearLayout>

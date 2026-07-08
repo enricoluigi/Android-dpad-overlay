@@ -95,7 +95,16 @@ class MainActivity : AppCompatActivity() {
             stopService(intent)
             Toast.makeText(this, R.string.overlay_stopped, Toast.LENGTH_SHORT).show()
         } else {
-            ContextCompat.startForegroundService(this, intent)
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    ContextCompat.startForegroundService(this, intent)
+                } else {
+                    startService(intent)
+                }
+            } catch (e: Exception) {
+                Toast.makeText(this, R.string.overlay_start_failed, Toast.LENGTH_LONG).show()
+                return
+            }
             Toast.makeText(this, R.string.overlay_started, Toast.LENGTH_SHORT).show()
         }
         binding.root.postDelayed({ updateUi() }, 300)
