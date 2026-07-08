@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">D-pad Overlay</string>
+    <string name="main_title">Teclado direcional flutuante</string>
+    <string name="main_subtitle">Envia teclas de controle remoto via acessibilidade — igual apps como Key Mapper.</string>
+    <string name="permissions_title">Configuração rápida</string>
+    <string name="overlay_permission_label">Exibir sobre outros apps</string>
+    <string name="accessibility_label">Serviço de acessibilidade</string>
+    <string name="overlay_running_label">Overlay ativo</string>
+    <string name="grant_overlay_permission">Conceder permissão de overlay</string>
+    <string name="open_accessibility_settings">Ativar acessibilidade</string>
+    <string name="start_overlay">Iniciar overlay</string>
+    <string name="stop_overlay">Parar overlay</string>
+    <string name="status_granted">Concedida</string>
+    <string name="status_denied">Negada</string>
+    <string name="status_enabled">Ativo</string>
+    <string name="status_disabled">Inativo</string>
+    <string name="status_running">Sim</string>
+    <string name="status_stopped">Não</string>
+    <string name="overlay_already_granted">Permissão de overlay já concedida.</string>
+    <string name="overlay_permission_required">Conceda a permissão de overlay primeiro.</string>
+    <string name="accessibility_required">Ative o serviço de acessibilidade do D-pad Overlay.</string>
+    <string name="accessibility_not_connected">Serviço de acessibilidade não conectado. Desative e ative de novo.</string>
+    <string name="overlay_started">Overlay iniciado.</string>
+    <string name="overlay_stopped">Overlay parado.</string>
+    <string name="overlay_start_failed">Falha ao iniciar o overlay. Tente novamente.</string>
+    <string name="key_send_failed">Não foi possível enviar a tecla.</string>
+    <string name="dpad_send_failed">Não foi possível enviar a tecla direcional.</string>
+    <string name="dpad_requires_android_13">Teclas direcionais requerem Android 13 ou superior.</string>
+    <string name="accessibility_connected_label">Serviço conectado</string>
+    <string name="key_up">▲</string>
+    <string name="key_down">▼</string>
+    <string name="key_left">◀</string>
+    <string name="key_right">▶</string>
+    <string name="key_ok">OK</string>
+    <string name="key_back">Voltar</string>
+    <string name="key_home">Home</string>
+    <string name="close_overlay">Fechar</string>
+    <string name="notification_channel_name">Overlay D-pad</string>
+    <string name="notification_channel_description">Mantém o teclado direcional visível em segundo plano.</string>
+    <string name="notification_title">D-pad Overlay ativo</string>
+    <string name="notification_text">Toque para abrir as configurações.</string>
+    <string name="accessibility_service_description">Permite enviar teclas direcionais, OK, voltar e home como um controle remoto.</string>
+</resources>

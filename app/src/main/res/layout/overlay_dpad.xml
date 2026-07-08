@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/overlay_background"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <LinearLayout
+        android:id="@+id/drag_handle"
+        android:layout_width="match_parent"
+        android:layout_height="14dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="18dp"
+            android:layout_height="2dp"
+            android:background="@drawable/drag_handle_bar" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_up"
+        style="@style/OverlayKeyButton"
+        android:layout_marginBottom="2dp"
+        android:contentDescription="@string/key_up"
+        android:text="@string/key_up" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_left"
+            style="@style/OverlayKeyButton"
+            android:layout_marginEnd="2dp"
+            android:contentDescription="@string/key_left"
+            android:text="@string/key_left" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_ok"
+            style="@style/OverlayOkButton"
+            android:layout_marginEnd="2dp"
+            android:contentDescription="@string/key_ok"
+            android:text="@string/key_ok" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_right"
+            style="@style/OverlayKeyButton"
+            android:contentDescription="@string/key_right"
+            android:text="@string/key_right" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_down"
+        style="@style/OverlayKeyButton"
+        android:layout_marginTop="2dp"
+        android:contentDescription="@string/key_down"
+        android:text="@string/key_down" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_back"
+            style="@style/OverlayNavButton"
+            android:layout_marginEnd="3dp"
+            android:contentDescription="@string/key_back"
+            android:text="@string/key_back" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_home"
+            style="@style/OverlayNavButton"
+            android:contentDescription="@string/key_home"
+            android:text="@string/key_home" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_close"
+        style="@style/OverlayCloseButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="@string/close_overlay" />
+
+</LinearLayout>
