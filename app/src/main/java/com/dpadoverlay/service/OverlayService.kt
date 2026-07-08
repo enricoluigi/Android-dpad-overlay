@@ -160,6 +160,7 @@ class OverlayService : Service() {
         binding.btnDown.setOnClickListener { sendKey(KeyEvent.KEYCODE_DPAD_DOWN) }
         binding.btnLeft.setOnClickListener { sendKey(KeyEvent.KEYCODE_DPAD_LEFT) }
         binding.btnRight.setOnClickListener { sendKey(KeyEvent.KEYCODE_DPAD_RIGHT) }
+        binding.btnOk.setOnClickListener { sendKey(KeyEvent.KEYCODE_DPAD_CENTER) }
         binding.btnBack.setOnClickListener { sendKey(KeyEvent.KEYCODE_BACK) }
         binding.btnHome.setOnClickListener { sendKey(KeyEvent.KEYCODE_HOME) }
         binding.btnClose.setOnClickListener { stopSelf() }
@@ -175,6 +176,8 @@ class OverlayService : Service() {
             KeyEvent.KEYCODE_DPAD_DOWN,
             KeyEvent.KEYCODE_DPAD_LEFT,
             KeyEvent.KEYCODE_DPAD_RIGHT -> R.string.dpad_send_failed
+            KeyEvent.KEYCODE_DPAD_CENTER,
+            KeyEvent.KEYCODE_ENTER -> R.string.ok_send_failed
             else -> R.string.key_send_failed
         }
         Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()

@@ -4,7 +4,7 @@ App Android com overlay flutuante que simula um teclado direcional com teclas pa
 
 ## Download
 
-**[Baixar APK v1.0.2](https://github.com/enricoluigi/Android-dpad-overlay/releases/download/v1.0.2/dpad-overlay-v1.0.2.apk)**
+**[Baixar APK v1.0.3](https://github.com/enricoluigi/Android-dpad-overlay/releases/download/v1.0.3/dpad-overlay-v1.0.3.apk)**
 
 Página de releases: https://github.com/enricoluigi/Android-dpad-overlay/releases
 
@@ -41,8 +41,8 @@ O APK será gerado em `app/build/outputs/apk/debug/app-debug.apk`.
 ## Notas técnicas
 
 - **Voltar** e **Home** usam ações globais do serviço de acessibilidade e funcionam na maioria dos dispositivos
-- As teclas direcionais usam navegação por foco na interface (funciona em menus, listas e apps de TV)
-- Em jogos que exigem D-pad real, pode ser necessário emulador ou dispositivo com suporte a injeção de teclas
+- As teclas direcionais movem o **foco** na interface (sem clicar/confirmar)
+- Funciona melhor em menus, listas e apps de TV
 - Ideal para Android TV, set-top boxes e emuladores onde apps dependem de navegação por D-pad
 
 ## Estrutura

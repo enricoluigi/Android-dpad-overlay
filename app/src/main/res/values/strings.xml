@@ -24,12 +24,14 @@
     <string name="overlay_stopped">Overlay parado.</string>
     <string name="overlay_start_failed">Falha ao iniciar o overlay. Tente novamente.</string>
     <string name="key_send_failed">Não foi possível enviar a tecla. Verifique o serviço de acessibilidade.</string>
-    <string name="dpad_send_failed">Não foi possível navegar. Abra um app com menus ou listas clicáveis.</string>
+    <string name="dpad_send_failed">Não foi possível mover o foco. Tente em um app com menus ou listas.</string>
+    <string name="ok_send_failed">Não foi possível confirmar. Mova o foco com as setas primeiro.</string>
     <string name="accessibility_connected_label">Serviço conectado</string>
     <string name="key_up">▲</string>
     <string name="key_down">▼</string>
     <string name="key_left">◀</string>
     <string name="key_right">▶</string>
+    <string name="key_ok">OK</string>
     <string name="key_back">Voltar</string>
     <string name="key_home">Home</string>
     <string name="close_overlay">Fechar</string>

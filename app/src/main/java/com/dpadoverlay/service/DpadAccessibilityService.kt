@@ -6,7 +6,6 @@ import android.content.Context
 import android.provider.Settings
 import android.view.KeyEvent
 import android.view.accessibility.AccessibilityEvent
-import android.view.accessibility.AccessibilityManager
 
 class DpadAccessibilityService : AccessibilityService() {
 
@@ -37,10 +36,13 @@ class DpadAccessibilityService : AccessibilityService() {
             if (KeyInjector.injectKey(keyCode)) {
                 return true
             }
-            if (FocusNavigator.navigate(this, keyCode)) {
+            return FocusNavigator.navigate(this, keyCode)
+        }
+        if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER || keyCode == KeyEvent.KEYCODE_ENTER) {
+            if (KeyInjector.injectKey(keyCode)) {
                 return true
             }
-            return GestureNavigator.scroll(this, keyCode)
+            return FocusNavigator.activateFocused(this)
         }
         return false
     }
