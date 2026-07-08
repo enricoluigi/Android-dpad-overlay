@@ -2,6 +2,12 @@
 
 App Android com overlay flutuante que simula um teclado direcional com teclas para **cima**, **baixo**, **esquerda**, **direita**, **voltar** e **home**.
 
+## Download
+
+**[Baixar APK v1.0.0](https://github.com/enricoluigi/Android-dpad-overlay/releases/download/v1.0.0/dpad-overlay-v1.0.0.apk)**
+
+Página de releases: https://github.com/enricoluigi/Android-dpad-overlay/releases
+
 ## Funcionalidades
 
 - Overlay flutuante sobre qualquer aplicativo
