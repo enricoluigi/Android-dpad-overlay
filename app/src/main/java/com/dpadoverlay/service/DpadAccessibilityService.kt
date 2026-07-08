@@ -3,6 +3,7 @@ package com.dpadoverlay.service
 import android.accessibilityservice.AccessibilityService
 import android.content.ComponentName
 import android.content.Context
+import android.provider.Settings
 import android.view.KeyEvent
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityManager
@@ -32,7 +33,16 @@ class DpadAccessibilityService : AccessibilityService() {
         if (keyCode == KeyEvent.KEYCODE_HOME) {
             return performGlobalAction(GLOBAL_ACTION_HOME)
         }
-        return KeyInjector.injectKey(keyCode)
+        if (isDpadKey(keyCode)) {
+            if (KeyInjector.injectKey(keyCode)) {
+                return true
+            }
+            if (FocusNavigator.navigate(this, keyCode)) {
+                return true
+            }
+            return GestureNavigator.scroll(this, keyCode)
+        }
+        return false
     }
 
     companion object {
@@ -40,18 +50,40 @@ class DpadAccessibilityService : AccessibilityService() {
         private var instance: DpadAccessibilityService? = null
 
         fun isEnabled(context: Context): Boolean {
-            val manager = context.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
-            val enabledServices = manager.getEnabledAccessibilityServiceList(
-                android.accessibilityservice.AccessibilityServiceInfo.FEEDBACK_GENERIC
-            )
+            if (Settings.Secure.getInt(
+                    context.contentResolver,
+                    Settings.Secure.ACCESSIBILITY_ENABLED,
+                    0
+                ) != 1
+            ) {
+                return false
+            }
+
+            val enabled = Settings.Secure.getString(
+                context.contentResolver,
+                Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES
+            ) ?: return false
+
             val component = ComponentName(context, DpadAccessibilityService::class.java)
-            return enabledServices.any { it.resolveInfo.serviceInfo.let { info ->
-                info.packageName == component.packageName && info.name == component.className
-            } }
+            val flattened = component.flattenToString()
+            val shortFlattened = component.flattenToShortString()
+            return enabled.split(':').any { entry ->
+                entry.equals(flattened, ignoreCase = true) ||
+                    entry.equals(shortFlattened, ignoreCase = true)
+            }
         }
+
+        fun isConnected(): Boolean = instance != null
 
         fun sendKey(keyCode: Int): Boolean {
             return instance?.sendKey(keyCode) ?: false
+        }
+
+        private fun isDpadKey(keyCode: Int): Boolean {
+            return keyCode == KeyEvent.KEYCODE_DPAD_UP ||
+                keyCode == KeyEvent.KEYCODE_DPAD_DOWN ||
+                keyCode == KeyEvent.KEYCODE_DPAD_LEFT ||
+                keyCode == KeyEvent.KEYCODE_DPAD_RIGHT
         }
     }
 }

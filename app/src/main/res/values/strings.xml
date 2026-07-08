@@ -24,6 +24,8 @@
     <string name="overlay_stopped">Overlay parado.</string>
     <string name="overlay_start_failed">Falha ao iniciar o overlay. Tente novamente.</string>
     <string name="key_send_failed">Não foi possível enviar a tecla. Verifique o serviço de acessibilidade.</string>
+    <string name="dpad_send_failed">Não foi possível navegar. Abra um app com menus ou listas clicáveis.</string>
+    <string name="accessibility_connected_label">Serviço conectado</string>
     <string name="key_up">▲</string>
     <string name="key_down">▼</string>
     <string name="key_left">◀</string>
@@ -35,5 +37,5 @@
     <string name="notification_channel_description">Mantém o teclado direcional visível em segundo plano.</string>
     <string name="notification_title">D-pad Overlay ativo</string>
     <string name="notification_text">Toque para abrir as configurações.</string>
-    <string name="accessibility_service_description">Permite que o D-pad Overlay envie teclas direcionais, voltar e home para outros aplicativos.</string>
+    <string name="accessibility_service_description">Permite que o D-pad Overlay envie teclas voltar/home e navegue entre itens na tela usando as setas direcionais.</string>
 </resources>

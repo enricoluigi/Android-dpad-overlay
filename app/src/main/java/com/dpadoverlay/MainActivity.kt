@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateUi() {
         val overlayGranted = Settings.canDrawOverlays(this)
         val accessibilityEnabled = DpadAccessibilityService.isEnabled(this)
+        val accessibilityConnected = DpadAccessibilityService.isConnected()
         val overlayRunning = OverlayService.isRunning
 
         binding.statusOverlayPermission.text = getString(
@@ -51,11 +52,14 @@ class MainActivity : AppCompatActivity() {
         binding.statusAccessibility.text = getString(
             if (accessibilityEnabled) R.string.status_enabled else R.string.status_disabled
         )
+        binding.statusAccessibilityConnected.text = getString(
+            if (accessibilityConnected) R.string.status_enabled else R.string.status_disabled
+        )
         binding.statusOverlayRunning.text = getString(
             if (overlayRunning) R.string.status_running else R.string.status_stopped
         )
 
-        val ready = overlayGranted && accessibilityEnabled
+        val ready = overlayGranted && accessibilityEnabled && accessibilityConnected
         binding.btnToggleOverlay.isEnabled = ready
         binding.btnToggleOverlay.text = getString(
             if (overlayRunning) R.string.stop_overlay else R.string.start_overlay

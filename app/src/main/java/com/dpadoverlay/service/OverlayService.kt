@@ -166,9 +166,18 @@ class OverlayService : Service() {
     }
 
     private fun sendKey(keyCode: Int) {
-        if (!DpadAccessibilityService.sendKey(keyCode)) {
-            Toast.makeText(applicationContext, R.string.key_send_failed, Toast.LENGTH_SHORT).show()
+        if (DpadAccessibilityService.sendKey(keyCode)) {
+            return
         }
+
+        val message = when (keyCode) {
+            KeyEvent.KEYCODE_DPAD_UP,
+            KeyEvent.KEYCODE_DPAD_DOWN,
+            KeyEvent.KEYCODE_DPAD_LEFT,
+            KeyEvent.KEYCODE_DPAD_RIGHT -> R.string.dpad_send_failed
+            else -> R.string.key_send_failed
+        }
+        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun removeOverlay() {
