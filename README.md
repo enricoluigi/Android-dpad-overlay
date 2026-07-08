@@ -4,7 +4,7 @@ App Android com overlay flutuante que envia teclas de **controle remoto** para q
 
 ## Download
 
-**[Baixar APK v1.2.0](https://github.com/enricoluigi/Android-dpad-overlay/releases/download/v1.2.0/dpad-overlay-v1.2.0.apk)**
+**[Baixar APK v1.2.1](https://github.com/enricoluigi/Android-dpad-overlay/releases/download/v1.2.1/dpad-overlay-v1.2.1.apk)**
 
 ## Configuração rápida (2 passos)
 
