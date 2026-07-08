@@ -32,18 +32,6 @@ class DpadAccessibilityService : AccessibilityService() {
         if (keyCode == KeyEvent.KEYCODE_HOME) {
             return performGlobalAction(GLOBAL_ACTION_HOME)
         }
-        if (isDpadKey(keyCode)) {
-            if (KeyInjector.injectKey(keyCode)) {
-                return true
-            }
-            return FocusNavigator.navigate(this, keyCode)
-        }
-        if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER || keyCode == KeyEvent.KEYCODE_ENTER) {
-            if (KeyInjector.injectKey(keyCode)) {
-                return true
-            }
-            return FocusNavigator.activateFocused(this)
-        }
         return false
     }
 
@@ -79,13 +67,6 @@ class DpadAccessibilityService : AccessibilityService() {
 
         fun sendKey(keyCode: Int): Boolean {
             return instance?.sendKey(keyCode) ?: false
-        }
-
-        private fun isDpadKey(keyCode: Int): Boolean {
-            return keyCode == KeyEvent.KEYCODE_DPAD_UP ||
-                keyCode == KeyEvent.KEYCODE_DPAD_DOWN ||
-                keyCode == KeyEvent.KEYCODE_DPAD_LEFT ||
-                keyCode == KeyEvent.KEYCODE_DPAD_RIGHT
         }
     }
 }

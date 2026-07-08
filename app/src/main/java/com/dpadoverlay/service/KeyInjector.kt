@@ -1,5 +1,6 @@
 package com.dpadoverlay.service
 
+import android.content.Context
 import android.os.SystemClock
 import android.view.InputEvent
 import android.view.KeyEvent
@@ -8,8 +9,10 @@ object KeyInjector {
 
     private const val INJECT_INPUT_EVENT_MODE_ASYNC = 0
 
-    fun injectKey(keyCode: Int): Boolean {
-        return injectViaReflection(keyCode) || injectViaShell(keyCode)
+    fun injectKey(context: Context, keyCode: Int): Boolean {
+        return ShizukuKeyInjector.injectKey(context, keyCode) ||
+            injectViaReflection(keyCode) ||
+            injectViaShell(keyCode)
     }
 
     private fun injectViaReflection(keyCode: Int): Boolean {

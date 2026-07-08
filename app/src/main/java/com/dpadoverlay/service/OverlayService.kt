@@ -21,6 +21,8 @@ import androidx.core.app.NotificationCompat
 import com.dpadoverlay.MainActivity
 import com.dpadoverlay.R
 import com.dpadoverlay.databinding.OverlayDpadBinding
+import com.dpadoverlay.service.KeyDispatcher
+import com.dpadoverlay.service.ShizukuKeyInjector
 import kotlin.math.abs
 
 class OverlayService : Service() {
@@ -39,10 +41,11 @@ class OverlayService : Service() {
 
     override fun onCreate() {
         super.onCreate()
+        isRunning = true
         try {
             startForegroundService()
+            ShizukuKeyInjector.bind(this)
             showOverlay()
-            isRunning = true
         } catch (e: Exception) {
             Log.e(TAG, "Failed to start overlay", e)
             Toast.makeText(this, R.string.overlay_start_failed, Toast.LENGTH_LONG).show()
@@ -57,6 +60,7 @@ class OverlayService : Service() {
 
     override fun onDestroy() {
         removeOverlay()
+        ShizukuKeyInjector.unbind()
         isRunning = false
         super.onDestroy()
     }
@@ -167,20 +171,14 @@ class OverlayService : Service() {
     }
 
     private fun sendKey(keyCode: Int) {
-        if (DpadAccessibilityService.sendKey(keyCode)) {
+        if (KeyDispatcher.sendKey(this, keyCode)) {
             return
         }
-
-        val message = when (keyCode) {
-            KeyEvent.KEYCODE_DPAD_UP,
-            KeyEvent.KEYCODE_DPAD_DOWN,
-            KeyEvent.KEYCODE_DPAD_LEFT,
-            KeyEvent.KEYCODE_DPAD_RIGHT -> R.string.dpad_send_failed
-            KeyEvent.KEYCODE_DPAD_CENTER,
-            KeyEvent.KEYCODE_ENTER -> R.string.ok_send_failed
-            else -> R.string.key_send_failed
-        }
-        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            applicationContext,
+            KeyDispatcher.failureMessageRes(this, keyCode),
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     private fun removeOverlay() {

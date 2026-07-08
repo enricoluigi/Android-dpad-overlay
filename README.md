@@ -1,34 +1,50 @@
 # D-pad Overlay
 
-App Android com overlay flutuante que simula um teclado direcional com teclas para **cima**, **baixo**, **esquerda**, **direita**, **voltar** e **home**.
+App Android com overlay flutuante que envia **teclas reais de controle remoto** (`DPAD_UP`, `DPAD_DOWN`, `DPAD_LEFT`, `DPAD_RIGHT`, `DPAD_CENTER`, `BACK`, `HOME`) para qualquer aplicativo.
 
 ## Download
 
-**[Baixar APK v1.0.3](https://github.com/enricoluigi/Android-dpad-overlay/releases/download/v1.0.3/dpad-overlay-v1.0.3.apk)**
+**[Baixar APK v1.1.0](https://github.com/enricoluigi/Android-dpad-overlay/releases/download/v1.1.0/dpad-overlay-v1.1.0.apk)**
 
 Página de releases: https://github.com/enricoluigi/Android-dpad-overlay/releases
 
-## Funcionalidades
+## Como funciona
 
-- Overlay flutuante sobre qualquer aplicativo
-- Layout em cruz (D-pad) com botões direcionais
-- Botões **Voltar** e **Home** integrados
-- Arraste o overlay pela alça superior para reposicionar
-- Serviço em primeiro plano para manter o overlay ativo
+O Android **não permite** que apps comuns injetem teclas direcionais sem permissões elevadas. Este app usa o **[Shizuku](https://shizuku.rikka.app/)** para executar `input keyevent` com privilégios de shell/ADB — o mesmo mecanismo usado por apps de mapeamento de teclas.
 
-## Requisitos
+Isso envia teclas **de verdade**, como um joystick ou controle remoto físico.
 
-- Android 8.0 (API 26) ou superior
-- Permissão **Exibir sobre outros apps**
-- Serviço de **Acessibilidade** ativado para o app
+## Configuração (uma vez)
 
-## Como usar
+### 1. Instalar o Shizuku
+- Baixe em https://shizuku.rikka.app/download/
+- Ou instale pela Play Store / F-Droid
 
-1. Instale o APK no dispositivo ou emulador
-2. Abra o app e conceda a permissão de overlay
-3. Ative o serviço de acessibilidade **D-pad Overlay** nas configurações do sistema
-4. Toque em **Iniciar overlay**
-5. Use os botões do overlay para navegar em outros apps
+### 2. Iniciar o Shizuku (sem root)
+1. Ative **Opções do desenvolvedor** no Android
+2. Ative **Depuração sem fio** (Android 11+)
+3. Abra o app **Shizuku** → **Iniciar via Depuração sem fio**
+4. Siga as instruções na tela (pareamento com um toque)
+
+> Após reiniciar o celular, é preciso iniciar o Shizuku de novo.
+
+### 3. Configurar o D-pad Overlay
+1. Instale o APK do D-pad Overlay
+2. Conceda **Exibir sobre outros apps**
+3. Toque em **Conceder permissão ao D-pad Overlay** (Shizuku)
+4. Inicie o overlay
+
+### 4. Acessibilidade (opcional)
+Só necessária como fallback para **Voltar/Home** se o Shizuku não estiver ativo.
+
+## Layout do controle
+
+```
+      [▲]
+[◀]  [OK]  [▶]
+      [▼]
+[Voltar] [Home]
+```
 
 ## Build
 
@@ -36,23 +52,9 @@ Página de releases: https://github.com/enricoluigi/Android-dpad-overlay/release
 ./gradlew assembleDebug
 ```
 
-O APK será gerado em `app/build/outputs/apk/debug/app-debug.apk`.
+## Notas
 
-## Notas técnicas
-
-- **Voltar** e **Home** usam ações globais do serviço de acessibilidade e funcionam na maioria dos dispositivos
-- As teclas direcionais movem o **foco** na interface (sem clicar/confirmar)
-- Funciona melhor em menus, listas e apps de TV
-- Ideal para Android TV, set-top boxes e emuladores onde apps dependem de navegação por D-pad
-
-## Estrutura
-
-```
-app/src/main/java/com/dpadoverlay/
-├── MainActivity.kt              # Tela principal e permissões
-├── DpadOverlayApp.kt            # Application e canal de notificação
-└── service/
-    ├── OverlayService.kt        # Overlay flutuante
-    ├── DpadAccessibilityService.kt  # Injeção de teclas
-    └── KeyInjector.kt           # Estratégias de injeção
-```
+- **Shizuku é obrigatório** para as teclas direcionais funcionarem como controle remoto
+- Funciona em jogos, emuladores, Android TV e apps que usam D-pad
+- Não requer root
+- Requer reiniciar o Shizuku após reboot do dispositivo
